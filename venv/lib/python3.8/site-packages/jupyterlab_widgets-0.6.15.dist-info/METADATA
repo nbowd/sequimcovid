@@ -1,0 +1,51 @@
+Metadata-Version: 2.0
+Name: jupyterlab-widgets
+Version: 0.6.15
+Summary: JupyterLab extension providing HTML widgets
+Home-page: https://github.com/ipython/ipywidgets
+Author: Jupyter Development Team
+Author-email: jupyter@googlegroups.com
+License: BSD
+Keywords: Jupyter,Interactive,Web
+Platform: Linux
+Platform: Mac OS X
+Platform: Windows
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.3
+Requires-Dist: jupyterlab (>=0.8.0)
+Provides-Extra: test
+Requires-Dist: nose; extra == 'test'
+Provides-Extra: test
+Requires-Dist: mock; python_version=="2.7" and extra == 'test'
+
+
+.. image:: https://img.shields.io/pypi/v/jupyterlab_widgets.svg
+   :target: https://pypi.python.org/pypi/jupyterlab_widgets/
+   :alt: Version Number
+
+.. image:: https://img.shields.io/pypi/dm/jupyterlab_widgets.svg
+   :target: https://pypi.python.org/pypi/jupyterlab_widgets/
+   :alt: Number of PyPI downloads
+
+Interactive HTML Widgets
+========================
+
+Interactive HTML widgets for JupyterLab notebooks. Since JupyterLab is in its
+pre-release stage, this package integrating widgets into JupyterLab should also
+be considered experimental.
+
+Usage
+=====
+
+Install the corresponding package for your kernel (i.e. Python users would also
+install `ipywidgets`).  Refer to that package's documentation for usage
+instructions.
+
+
