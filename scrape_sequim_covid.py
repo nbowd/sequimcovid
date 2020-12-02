@@ -98,9 +98,9 @@ class SequimCovid:
                     else:
                         date_data.append('N/A')
                 df2[more_dates] = date_data
-        df2.to_csv('my_covid_data.csv')
-        return df2
+        # df2.to_csv('my_covid_data.csv')
+        #return df2
 
 
 # sequim = SequimCovid()
-# print(sequim.update_csv())
+# sequim.update_csv()
