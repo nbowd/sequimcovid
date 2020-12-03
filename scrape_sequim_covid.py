@@ -40,9 +40,9 @@ class SequimCovid:
         """Takes todays total cases and subtracts yesterdays total cases, today's data gets updated from it's placeholder
         then the daily_data is added to the main dataframe as a new column with today's date as the header. This is then
         saved."""
-        new_cases = int(self.daily_data[1]) - int(self.df.iloc[1,-1])
+        new_cases = int(self.daily_data[1]) - int(self.df.iloc[1,-1])  # today's total minus yesterdays total
         self.daily_data[0] = str(new_cases)
-        self.df[dt.today().strftime('%m/%d/%Y')] = self.daily_data
+        self.df[dt.today().strftime('%m/%d/%Y')] = self.daily_data  # saves as today's date
         self.df.to_csv('sequim_covid_data.csv')
         print('Complete 1/2')
 
@@ -55,8 +55,8 @@ class SequimCovid:
         sum_cases = 0
         for x in cases_two_weeks:
             sum_cases += int(x)
-        self.my_data.append(sum_cases)
-        per_one_hundred = ceil(sum_cases*1.29)
+        self.my_data.append(sum_cases)  # takes previous two week slice and adds total together
+        per_one_hundred = ceil(sum_cases*1.29)  # multiplies by 1.29 to get cases per 100k
         self.my_data.append(per_one_hundred)
         self.my_df[dt.today().strftime('%m/%d/%Y')] = self.my_data
         self.my_df.to_csv('my_covid_data.csv')
