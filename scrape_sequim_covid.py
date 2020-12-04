@@ -40,7 +40,7 @@ class SequimCovid:
         """Takes todays total cases and subtracts yesterdays total cases, today's data gets updated from it's placeholder
         then the daily_data is added to the main dataframe as a new column with today's date as the header. This is then
         saved."""
-        new_cases = int(self.daily_data[1]) - int(self.df.iloc[1,-1])  # today's total minus yesterdays total
+        new_cases = max(0, int(self.daily_data[1]) - int(self.df.iloc[1,-1]))  # today's total minus yesterdays total
         self.daily_data[0] = str(new_cases)
         self.df[dt.today().strftime('%m/%d/%Y')] = self.daily_data  # saves as today's date
         self.df.to_csv('sequim_covid_data.csv')
@@ -103,4 +103,5 @@ class SequimCovid:
 
 
 # sequim = SequimCovid()
-# sequim.update_csv()
+# sequim.create_dataframe()
+
