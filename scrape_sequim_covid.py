@@ -102,6 +102,6 @@ class SequimCovid:
         #return df2
 
 
-# sequim = SequimCovid()
-# sequim.create_dataframe()
+sequim = SequimCovid()
+sequim.update_csv()
 
