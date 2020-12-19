@@ -42,11 +42,14 @@ class SequimCovid:
         self.new_cases_twoweek = []
         self.new_cases_month = []
 
+        self.dates_twoweek = [date for date in self.df.columns[-14:]]
+        self.dates_month = [date for date in self.df.columns[-30:]]
+
     def get_new_cases(self):
         """Takes todays total cases and subtracts yesterdays total cases, today's data gets updated from it's placeholder
         then the daily_data is added to the main dataframe as a new column with today's date as the header. This is then
         saved."""
-        new_cases = max(0, int(self.daily_data[1]) - int(self.df.iloc[1,-1]))  # today's total minus yesterdays total
+        new_cases = max(0, int(self.daily_data[1]) - int(self.df.iloc[1, -1]))  # today's total minus yesterdays total
         self.daily_data[0] = str(new_cases)
         self.df[dt.today().strftime('%m/%d/%Y')] = self.daily_data  # saves as today's date
         self.df.to_csv('sequim_covid_data.csv')
@@ -71,23 +74,26 @@ class SequimCovid:
     def create_dataframe(self):
         """Used to get dataframes up and running, just a storage space for important lines for now."""
         #df2[dt.today().strftime('%m/%d/%Y')] = self.daily_data  # DO NOT DELETE IMPORTANT FOR CREATING NEW COLUMNS
-        self.df.iloc[1, -22] = '456'  #  GOOD FOR REWRITING SINGLE CELLS
-        self.df.to_csv('sequim_covid_data.csv')
+        #self.df.iloc[1, -22] = '456'  #  GOOD FOR REWRITING SINGLE CELLS
+        #self.df.to_csv('sequim_covid_data.csv')
+        pass
 
     def convert_chart_data(self):
         # Converts items from string to int for two weeks
         for case in range(1,15):
             self.confirmed_twoweek.insert(0, int(self.df.loc['Total Confirmed Cases'][-case]))
             self.new_cases_twoweek.insert(0, int(self.df.loc['New Cases'][-case]))
-        print(self.confirmed_twoweek, self.new_cases_twoweek)
 
         # Converts items from string to int for two weeks
         for case in range(1,31):
-
             self.confirmed_month.insert(0, int(self.df.loc['Total Confirmed Cases'][-case]))
             self.new_cases_month.insert(0, int(self.df.loc['New Cases'][-case]))
-        print(self.confirmed_month, self.new_cases_month)
 
+    def get_twoweek_chart(self):
+        return pd.DataFrame(data={'Total Confirmed Cases': self.confirmed_twoweek, 'New Cases': self.new_cases_twoweek},index=self.dates_twoweek)
+
+    def get_month_chart(self):
+        return pd.DataFrame(data={'Total Confirmed Cases': self.confirmed_month, 'New Cases': self.new_cases_month},index=self.dates_month)
 
     def update_csv(self):
         """This is the main function of the class, it directs the writing of data to csv."""
